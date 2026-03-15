@@ -18,7 +18,7 @@
 
 ```bash
 # 1. Клонируй репозиторий
-git clone https://github.com/твой-логин/barberx.git
+git clone https://github.com/stxnique/barberx.git
 cd barberx
 
 # 2. Создай и активируй виртуальное окружение
