@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru-RU">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Наши барберы — BarberX</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .site-header {
+            background-color: #000000;
+            padding: 15px 20px;
+            border-bottom: 1px solid #333;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .site-title {
+            flex-shrink: 0;
+        }
+
+        .site-title a {
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .main-navigation {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .main-navigation ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .main-navigation a {
+            color: #fffefe;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .main-navigation a:hover {
+            color: #fe0000;
+        }
+
+        .main-navigation a.active {
+            color: #fe0000;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .header-button {
+            background-color: #dd183b;
+            color: #fefefe;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 100px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 16px;
+        }
+
+        .header-button:hover {
+            background-color: #cc1939;
+        }
+
+        .header-button.outline {
+            background-color: transparent;
+            border: 1px solid #dd183b;
+        }
+
+        .header-button.outline:hover {
+            background-color: #dd183b;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background-color: #000000;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .hero-description {
+            font-size: 18px;
+            color: #fefefe;
+            opacity: 0.9;
+        }
+
+        /* Barber Cards */
+        .barbers-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .barber-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+            align-items: center;
+        }
+
+        .barber-card.reverse {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .barber-info {
+            padding: 20px;
+        }
+
+        .barber-name {
+            font-size: 32px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        .barber-description {
+            font-size: 16px;
+            color: #fefefe;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .barber-button {
+            background-color: #dd183b;
+            color: #fefefe;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 100px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .barber-button:hover {
+            background-color: #cc1939;
+        }
+
+        .barber-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        /* Footer */
+        .site-footer {
+            background-color: #000000;
+            padding: 45px 20px;
+            border-top: 1px solid #333;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .footer-logo {
+            color: #dd183b;
+            font-size: 36px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .footer-navigation ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .footer-navigation a {
+            color: #fffefe;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .footer-copyright {
+            text-align: center;
+            color: #fffefe;
+            font-size: 16px;
+            opacity: 0.8;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 921px) {
+            .main-navigation {
+                display: none;
+                position: static;
+                transform: none;
+                width: 100%;
+                background-color: #000000;
+                padding: 20px;
+                border-top: 1px solid #333;
+                margin-top: 15px;
+            }
+
+            .header-content {
+                flex-wrap: wrap;
+            }
+
+            .main-navigation ul {
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .header-buttons {
+                display: none;
+            }
+
+            .barber-card {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .barber-card.reverse {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-title {
+                font-size: 36px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                text-align: center;
+            }
+
+            .footer-navigation ul {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .barber-image {
+                height: 350px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .barber-image {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 28px;
+            }
+
+            .barber-name {
+                font-size: 24px;
+            }
+
+            .barber-image {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="header-content">
+            <div class="site-title">
+                <a href="{% url 'index' %}">BarberX</a>
+            </div>
+
+            <nav class="main-navigation">
+                <ul>
+                    <li><a href="{% url 'index' %}">Главная</a></li>
+                    <li><a href="{% url 'about' %}">О нас</a></li>
+                    <li><a href="{% url 'contacts' %}">Контакты</a></li>
+                    <li><a href="{% url 'services' %}">Услуги</a></li>
+                    <li><a href="{% url 'barbers' %}" class="active">Барберы</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-buttons">
+                <a href="{% url 'contacts' %}">
+                    <button class="header-button">Записаться</button>
+                </a>
+
+                {% if user.is_authenticated %}
+                    <a href="{% url 'logout' %}">
+                        <button class="header-button outline">Выйти ({{ user.username }})</button>
+                    </a>
+                {% else %}
+                    <a href="{% url 'login' %}">
+                        <button class="header-button outline">Войти</button>
+                    </a>
+                {% endif %}
+            </div>
+
+            <button class="mobile-menu-toggle">☰</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">Наши барберы</h1>
+            <p class="hero-description">Самые опытные и профессиональные мастера вашего города</p>
+        </div>
+    </section>
+
+    <!-- Barber 1 -->
+    <section class="barbers-section">
+        <div class="barber-card">
+            <div class="barber-info">
+                <h2 class="barber-name">Алексей</h2>
+                <p class="barber-description">
+                    Талантливый и амбициозный младший барбер. Он быстро осваивает новые техники,
+                    внимателен к деталям и готов воплощать в жизнь любые идеи клиента. Его приятное
+                    отношение и желание учиться делают его отличным выбором для тех, кто ценит
+                    свежий взгляд и индивидуальный подход.
+                </p>
+                <a href="{% url 'contacts' %}">
+                    <button class="barber-button">Записаться</button>
+                </a>
+            </div>
+            <img src="{% static 'main/img/barber1.jpg' %}" alt="Алексей" class="barber-image">
+        </div>
+
+        <!-- Barber 2 -->
+        <div class="barber-card reverse">
+            <img src="{% static 'main/img/barber2.jpg' %}" alt="Михаил" class="barber-image">
+            <div class="barber-info">
+                <h2 class="barber-name">Михаил</h2>
+                <p class="barber-description">
+                    Опытный старший барбер с богатым портфолио и высочайшим профессионализмом.
+                    Он мастер классического и современного стайлинга, умеет подобрать оптимальный
+                    образ для каждого клиента. Его уверенность, аккуратность и внимание к деталям
+                    гарантируют высокий уровень обслуживания.
+                </p>
+                <a href="{% url 'contacts' %}">
+                    <button class="barber-button">Записаться</button>
+                </a>
+            </div>
+        </div>
+
+        <!-- Barber 3 -->
+        <div class="barber-card">
+            <div class="barber-info">
+                <h2 class="barber-name">Антон</h2>
+                <p class="barber-description">
+                    Ведущий специалист с многолетним опытом работы. Он отличается глубоким пониманием
+                    стиля и индивидуальных особенностей клиента. Антон аккуратно подходит к каждому
+                    заказу, создавая не только стильные прически, но и атмосферу доверия и комфорта.
+                </p>
+                <a href="{% url 'contacts' %}">
+                    <button class="barber-button">Записаться</button>
+                </a>
+            </div>
+            <img src="{% static 'main/img/barber3.jpg' %}" alt="Антон" class="barber-image">
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-navigation">
+                <ul>
+                    <li><a href="{% url 'index' %}">Главная</a></li>
+                    <li><a href="{% url 'about' %}">О нас</a></li>
+                    <li><a href="{% url 'contacts' %}">Контакты</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-logo">
+                BarberX
+            </div>
+
+            <div class="footer-copyright">
+                <p>Все права защищены © 2025 BarberX</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-toggle').addEventListener('click', function() {
+            const nav = document.querySelector('.main-navigation');
+            if (nav.style.display === 'block') {
+                nav.style.display = 'none';
+            } else {
+                nav.style.display = 'block';
+            }
+        });
+
+        // Ensure menu is hidden on mobile by default
+        if (window.innerWidth <= 921) {
+            document.querySelector('.main-navigation').style.display = 'none';
+        } else {
+            document.querySelector('.main-navigation').style.display = 'block';
+        }
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 921) {
+                document.querySelector('.main-navigation').style.display = 'block';
+            } else {
+                document.querySelector('.main-navigation').style.display = 'none';
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId !== '#') {
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

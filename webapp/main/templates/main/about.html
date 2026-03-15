@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru-RU">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>О нас — BarberX</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* Header - Единый стиль */
+        .site-header {
+            background-color: #000000;
+            padding: 15px 20px;
+            border-bottom: 1px solid #333;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .site-title {
+            flex-shrink: 0;
+        }
+
+        .site-title a {
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .main-navigation {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .main-navigation ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .main-navigation a {
+            color: #fffefe;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .main-navigation a:hover {
+            color: #fe0000;
+        }
+
+        .main-navigation a.active {
+            color: #fe0000;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .header-button {
+            background-color: #dd183b;
+            color: #fefefe;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 100px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 16px;
+        }
+
+        .header-button:hover {
+            background-color: #cc1939;
+        }
+
+        .header-button.outline {
+            background-color: transparent;
+            border: 1px solid #dd183b;
+        }
+
+        .header-button.outline:hover {
+            background-color: #dd183b;
+        }
+
+        /* Hero Section - Единый стиль */
+        .hero-section {
+            background-color: #000000;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .hero-description {
+            font-size: 18px;
+            color: #fefefe;
+            opacity: 0.9;
+        }
+
+        /* About Section - Единый стиль */
+        .about-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* About Center Content - Единый стиль */
+        .about-center {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 40px;
+        }
+
+        /* About Text - Единый стиль */
+        .about-text {
+            padding: 20px;
+        }
+
+        .about-title {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: #ffffff;
+        }
+
+        .about-description {
+            color: #fffefe;
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+
+        .about-button {
+            background-color: #dd183b;
+            color: #fefefe;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 100px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+
+        .about-button:hover {
+            background-color: #cc1939;
+        }
+
+        /* CTA Section - Единый стиль */
+        .cta-section {
+            background-color: #151515;
+            padding: 60px 20px;
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: #ffffff;
+        }
+
+        .cta-button {
+            background-color: #dd183b;
+            color: #fefefe;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 100px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #cc1939;
+        }
+
+        /* Footer - Единый стиль */
+        .site-footer {
+            background-color: #000000;
+            padding: 45px 20px;
+            border-top: 1px solid #333;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .footer-logo {
+            color: #dd183b;
+            font-size: 36px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .footer-navigation ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .footer-navigation a {
+            color: #fffefe;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .footer-copyright {
+            text-align: center;
+            color: #fffefe;
+            font-size: 16px;
+            opacity: 0.8;
+        }
+
+        /* Mobile Menu - Единый стиль */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Responsive - Единый стиль */
+        @media (max-width: 921px) {
+            .main-navigation {
+                display: none;
+                position: static;
+                transform: none;
+                width: 100%;
+                background-color: #000000;
+                padding: 20px;
+                border-top: 1px solid #333;
+                margin-top: 15px;
+            }
+
+            .header-content {
+                flex-wrap: wrap;
+            }
+
+            .main-navigation ul {
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .header-buttons {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 36px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                text-align: center;
+            }
+
+            .footer-navigation ul {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .about-center {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .about-title {
+                font-size: 28px;
+            }
+
+            .cta-title {
+                font-size: 28px;
+            }
+
+            .about-description {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 28px;
+            }
+
+            .about-title {
+                font-size: 24px;
+            }
+
+            .cta-title {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="header-content">
+            <div class="site-title">
+                <a href="{% url 'index' %}">BarberX</a>
+            </div>
+
+            <nav class="main-navigation">
+                <ul>
+                    <li><a href="{% url 'index' %}">Главная</a></li>
+                    <li><a href="{% url 'about' %}" class="active">О нас</a></li>
+                    <li><a href="{% url 'contacts' %}">Контакты</a></li>
+                    <li><a href="{% url 'services' %}">Услуги</a></li>
+                    <li><a href="{% url 'barbers' %}">Барберы</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-buttons">
+                <a href="{% url 'contacts' %}">
+                    <button class="header-button">Записаться</button>
+                </a>
+
+                {% if user.is_authenticated %}
+                    <a href="{% url 'logout' %}">
+                        <button class="header-button outline">Выйти ({{ user.username }})</button>
+                    </a>
+                {% else %}
+                    <a href="{% url 'login' %}">
+                        <button class="header-button outline">Войти</button>
+                    </a>
+                {% endif %}
+            </div>
+
+            <button class="mobile-menu-toggle">☰</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">О нашем филиале</h1>
+            <p class="hero-description">Наш филиал — это уютное пространство, где стиль и качество встречаются с индивидуальным подходом. Мы предлагаем современную стрижку, бритву и уход за бородой в комфортной атмосфере.</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="about-center">
+            <div class="about-text">
+                <h2 class="about-title">Почему именно мы</h2>
+                <p class="about-description">
+                    Потому что мы ценим каждого клиента, используем только качественные материалы и современные техники.
+                    Наши мастера — профессионалы с большим опытом, а атмосфера в нашем барбершопе создаст ощущение уюта и доверия.
+                </p>
+                <p class="about-description">
+                    Выбирая нас, вы получаете стильный образ и отменное обслуживание. Мы следим за трендами в мужском стиле
+                    и постоянно совершенствуем свои навыки, чтобы вы всегда выглядели безупречно.
+                </p>
+                <a href="{% url 'contacts' %}">
+                    <button class="about-button">Записаться</button>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2 class="cta-title">Запишитесь прямо сейчас!</h2>
+            <a href="{% url 'contacts' %}">
+                <button class="cta-button">Записаться</button>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-navigation">
+                <ul>
+                    <li><a href="{% url 'index' %}">Главная</a></li>
+                    <li><a href="{% url 'about' %}">О нас</a></li>
+                    <li><a href="{% url 'contacts' %}">Контакты</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-logo">
+                BarberX
+            </div>
+
+            <div class="footer-copyright">
+                <p>Все права защищены © 2025 BarberX</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-toggle').addEventListener('click', function() {
+            const nav = document.querySelector('.main-navigation');
+            if (nav.style.display === 'block') {
+                nav.style.display = 'none';
+            } else {
+                nav.style.display = 'block';
+            }
+        });
+
+        // Ensure menu is hidden on mobile by default
+        if (window.innerWidth <= 921) {
+            document.querySelector('.main-navigation').style.display = 'none';
+        } else {
+            document.querySelector('.main-navigation').style.display = 'block';
+        }
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 921) {
+                document.querySelector('.main-navigation').style.display = 'block';
+            } else {
+                document.querySelector('.main-navigation').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
