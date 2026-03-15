@@ -44,3 +44,13 @@ python manage.py createsuperuser
 
 # 8. Запусти сервер
 python manage.py runserver
+
+```
+
+## Доступ
+
+- Сайт: http://127.0.0.1:8000
+
+- Админка: http://127.0.0.1:8000/admin
+
+
